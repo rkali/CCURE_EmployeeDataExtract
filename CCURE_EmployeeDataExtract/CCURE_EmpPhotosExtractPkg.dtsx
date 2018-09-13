@@ -1,0 +1,456 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/5/2017 6:06:42 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="AMS-WEB-03"
+  DTS:CreatorName="DOLBYNET\rkali"
+  DTS:DTSID="{692352D0-5389-463A-BFC3-EF7E0BF18D4D}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="13.0.2165.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="CCURE_EmpPhotosExtractPkg"
+  DTS:PackageType="5"
+  DTS:VersionBuild="57"
+  DTS:VersionGUID="{EF5FDC39-F823-45F6-91AA-CF7618F0BDF7}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SFO-CCURE-02.SWHSystem]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{5BB344FD-17CD-42AB-B93E-84C64179C057}"
+      DTS:ObjectName="SFO-CCURE-02.SWHSystem">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=1275-SQL2;User ID=;Initial Catalog=BioConnect;Provider=SQLNCLI11;Integrated Security=SSPI;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="C:\Users\rakalidindi\Documents\Dolby\Workspaces\Workspace\Integration Services Project1\Integration Services Project1\Web.dtsConfig"
+      DTS:ConfigurationType="1"
+      DTS:CreationName=""
+      DTS:DTSID="{2147FDFD-6F44-418B-8105-33B291560ED1}"
+      DTS:ObjectName="Configuration 1" />
+  </DTS:Configurations>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{597A86EC-C817-453D-B293-1011136D643D}"
+      DTS:EvaluateAsExpression="True"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="initialRun"
+      DTS:RaiseChangedEvent="True">
+      <DTS:VariableValue
+        DTS:DataType="11">-1</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8853BF81-F2C8-457D-BF93-B0EF8AA0F111}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="sPath">
+      <DTS:VariableValue
+        DTS:DataType="8">\\calcium\photos\</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{2195C1B7-EFEF-46E0-8B2B-F98418611700}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="1033"
+      DTS:ObjectName="Data Flow Task"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v9; (C) 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          BLOBTempStoragePath=""
+          bufferTempStoragePath=""
+          engineThreads="5"
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task\Export Column"
+              componentClassID="Microsoft.Extractor"
+              contactInfo="Export Column;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Exports column values from rows in a dataset to files."
+              name="Export Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Export Column.Inputs[Export Column Input]"
+                  hasSideEffects="true"
+                  name="Export Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Export Column.Inputs[Export Column Input].Columns[PATH]"
+                      cachedDataType="wstr"
+                      cachedLength="4000"
+                      cachedName="PATH"
+                      errorOrTruncationOperation="File Open"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[PATH]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column that contains the file data."
+                          name="FileDataColumnID">#{Package\Data Flow Task\Export Column.Inputs[Export Column Input].Columns[Image]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether to write a byte-order marker (BOM) to the file."
+                          name="WriteBOM">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether to force truncation of an existing file."
+                          name="ForceTruncate">true</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether to append data to an existing file."
+                          name="AllowAppend">false</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Export Column.Inputs[Export Column Input].Columns[Image]"
+                      cachedDataType="image"
+                      cachedName="Image"
+                      errorOrTruncationOperation="File Write"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Image]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column that contains the file data."
+                          name="FileDataColumnID">#{Package\Data Flow Task\0:invalid}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether to write a byte-order marker (BOM) to the file."
+                          name="WriteBOM">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether to force truncation of an existing file."
+                          name="ForceTruncate">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether to append data to an existing file."
+                          name="AllowAppend">true</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Export Column.Outputs[Export Column Output]"
+                  exclusionGroup="1"
+                  name="Export Column Output"
+                  synchronousInputId="Package\Data Flow Task\Export Column.Inputs[Export Column Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Export Column.Outputs[Export Column Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Export Column Error Output"
+                  synchronousInputId="Package\Data Flow Task\Export Column.Inputs[Export Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Export Column.Outputs[Export Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Export Column.Outputs[Export Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Export Column.Outputs[Export Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Export Column.Outputs[Export Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">DECLARE @path AS NVARCHAR(100) = ?
+DECLARE @InitialRun AS bit = ?
+
+
+
+IF @InitialRun = 1
+
+
+ SELECT 
+ @path + REPLACE(REPLACE(REPLACE(e.Initials,',','_'),' ',''),'"','') +'.jpg' AS PATH,
+-- e.EMP_no,
+ -- e.FirstName, e.LastName ,
+ i.Image
+ FROM
+  ACVSCore.Access.Personnel p
+INNER JOIN 
+ ACVSCore.Access.IMAGES I
+ ON p.ObjectId = I.PARENTID
+
+INNER JOIN
+ [SFO-SQL-02].Info.dbo.EMPLOYEES e
+ON e.EMP_NO = p.Int3
+ WHERE
+ i.IsPrimary = 1
+ AND 
+ p.Disabled=0
+
+ AND 
+ LEN(RTRIM(LTRIM( e.Initials))) &gt; 0
+
+
+ ELSE
+ 
+ SELECT 
+ @path + REPLACE(REPLACE(REPLACE(e.Initials,',','_'),' ',''),'"','') +'.jpg' AS PATH,
+-- e.EMP_no,
+ -- e.FirstName, e.LastName ,
+ i.Image
+ FROM
+  ACVSCore.Access.Personnel p
+INNER JOIN 
+ ACVSCore.Access.IMAGES I
+ ON p.ObjectId = I.PARENTID
+
+INNER JOIN
+ [SFO-SQL-02].Info.dbo.EMPLOYEES e
+ON e.EMP_NO = p.Int3
+ WHERE
+ i.IsPrimary = 1
+ AND 
+ p.Disabled=0
+
+ AND 
+ LEN(RTRIM(LTRIM( e.Initials))) &gt; 0
+ -- Add below condition for incremental runs
+ AND
+  I.[ImageCaptureDate] &gt;= DATEADD(day, -7, GETDATE())</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping">"Parameter0:Input",{8853BF81-F2C8-457D-BF93-B0EF8AA0F111};"Parameter1:Input",{597A86EC-C817-453D-B293-1011136D643D};</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SFO-CCURE-02.SWHSystem]"
+                  connectionManagerRefId="Package.ConnectionManagers[SFO-CCURE-02.SWHSystem]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Image]"
+                      dataType="image"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Image]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Image]"
+                      name="Image"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[PATH]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PATH]"
+                      length="4000"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[PATH]"
+                      name="PATH"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Image]"
+                      dataType="image"
+                      name="Image" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PATH]"
+                      dataType="wstr"
+                      length="4000"
+                      name="PATH" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Image]"
+                      dataType="image"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Image]"
+                      name="Image" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PATH]"
+                      dataType="wstr"
+                      length="4000"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PATH]"
+                      name="PATH" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task.Paths[OLE DB Source Output]"
+              endId="Package\Data Flow Task\Export Column.Inputs[Export Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="152,42.6666666666667"
+          Id="Package\Data Flow Task"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="150.666666666667,42.6666666666667"
+          Id="Package\Data Flow Task\OLE DB Source"
+          TopLeft="22.4433962264151,5.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Data Flow Task\Export Column"
+          TopLeft="5.5,85.3867924528302" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[OLE DB Source Output]"
+          TopLeft="97.7767295597484,48.1666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-24.2767295597484,37.2201257861635"
+              Start="0,0"
+              End="-24.2767295597484,29.7201257861635">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.6100628930818" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.6100628930818"
+                    Point2="0,18.6100628930818"
+                    Point3="-4,18.6100628930818" />
+                  <mssgle:LineSegment
+                    End="-20.2767295597484,18.6100628930818" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-20.2767295597484,18.6100628930818"
+                    Point2="-24.2767295597484,18.6100628930818"
+                    Point3="-24.2767295597484,22.6100628930818" />
+                  <mssgle:LineSegment
+                    End="-24.2767295597484,29.7201257861635" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
